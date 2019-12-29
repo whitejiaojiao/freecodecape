@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <link href="freeTest2.css" type="text/css" rel="stylesheet">
+</head>
+<body class="main">
+    <div class="box" id="app">
+        <div v-if="pageNum === 'B'">
+            <div class="header">
+                <transition name="fade">
+                    <div class="player1" v-if="!flag">
+                        用户操作
+                    </div>
+                </transition>
+                <transition name="fade">
+                    <div class="player2" v-if="flag">
+                        电脑操作
+                    </div>
+                </transition>
+                <p class="but" @click="reset">重新启动</p>
+            </div>
+            <div class="player">
+                <but v-for="(val,index) in arr" :key="index" @click.native="set(index)" ref="temp"></but>
+            </div>
+        </div>
+        <div v-else-if="pageNum === 'C'">
+            <div class="header">
+                <p class="but" @click="reset">重新启动</p>
+            </div>
+            <transition name="fade2">
+                <div class="result">
+                    <div>{{msg}}</div>
+                    <button @click="reStart">再来一局</button>
+                </div>
+            </transition>
+        </div>
+        <div v-else-if="pageNum === 'A'">
+            <transition name="fade3">
+                <div class="result">
+                    <div>{{msg}}</div>
+                    <button @click="typeStart(1)">{{text1}}</button>
+                    <button @click="typeStart(2)">{{text2}}</button>
+                </div>
+            </transition>
+        </div>
+    </div>
+
+
+</body>
+</html>
+<script src="freeTest2.js"></script>
